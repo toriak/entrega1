@@ -1,11 +1,16 @@
 require 'highline/import'
 
-	choose do |menu|
-  		menu.prompt = "Desea salir?"
-  		menu.choice(:Si) {
-    		say("Gracias por venir")
-  		}
-  		menu.choice(:No) {
-    		say("Ok, nos quedamos")
-  		}
-	end
+	salir = false;
+		while !salir do
+  			choose do |menu|
+    		menu.prompt = "Desea salir?"
+    		menu.choice(:Si) {
+      			salir = true
+      			say("Gracias por venir")
+    		}
+    		menu.choice(:No) do
+    			say("Ok, nos quedamos")
+    	end
+  	end
+end
+
