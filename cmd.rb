@@ -8,13 +8,17 @@ require 'highline/import'
 
     		menu.choice(:Salir) {
       			salir = true
-      			say("\t Sale de la aplicación \n")
+      			say("\n\t Sale de la aplicación \n\n")
+    		}
+
+    		menu.choice(:Logout){
+    			say("\n\t Deslogueando... \n\n")
     		}
 
     		menu.choice(:Estado) do
-	    		say("\t Tu estado es ... \n")
+	    		say("\n\t Tu estado es ... \n\n")
     		end
     	end
   	end
-  	
+
 
