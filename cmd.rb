@@ -11,9 +11,10 @@ require 'highline/import'
       			say("\t Sale de la aplicación \n")
     		}
 
-    		menu.choice(:No) do
-    			say("Ok, nos quedamos")
+    		menu.choice(:Estado) do
+	    		say("\t Tu estado es ... \n")
+    		end
     	end
   	end
-end
+  	
 
