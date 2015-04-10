@@ -15,6 +15,10 @@ require 'highline/import'
     			say("\n\t Deslogueando... \n\n")
     		}
 
+    		menu.choice(:Login){
+    			say("\n\t Logueando... \n")
+    		}	
+
     		menu.choice(:Estado) do
 	    		say("\n\t Tu estado es ... \n\n")
     		end
