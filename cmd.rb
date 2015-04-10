@@ -3,11 +3,14 @@ require 'highline/import'
 	salir = false;
 		while !salir do
   			choose do |menu|
-    		menu.prompt = "Desea salir?"
-    		menu.choice(:Si) {
+    		
+    		menu.prompt = "Que desea hacer?"
+
+    		menu.choice(:Salir) {
       			salir = true
-      			say("Gracias por venir")
+      			say("\t Sale de la aplicación \n")
     		}
+
     		menu.choice(:No) do
     			say("Ok, nos quedamos")
     	end
