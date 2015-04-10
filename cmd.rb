@@ -1,5 +1,11 @@
 require 'highline/import'
 
-	require 'highline/import'
-	nombre = ask "¿Cúal es tu nombre?"
-	say("Tu nombre es " + nombre)
+	choose do |menu|
+  		menu.prompt = "Desea salir?"
+  		menu.choice(:Si) {
+    		say("Gracias por venir")
+  		}
+  		menu.choice(:No) {
+    		say("Ok, nos quedamos")
+  		}
+	end
