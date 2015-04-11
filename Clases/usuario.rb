@@ -1,13 +1,25 @@
+class Usuario
+	
+	attr_accessor :nombre
+	attr_accessor :contraseña
+	attr_accessor :estado
 
-def Usuario
+	def initialize (unNombre, unaContraseña)
 
-	attr_accessor :@nombre
-	attr_accessor :@contraseña
-	attr_accessor :@estado
-
-	def verificarContraseña (unaContraseña)
-
-		return @contraseña = unaContraseña
+		@nombre = unNombre
+		@contraseña = unaContraseña
 	end
+
+	def verificar_contraseña (pass)
+
+		if @contraseña == pass
+			return true
+		else
+			return false
+		end
+
+	end
+
+
 
 end
