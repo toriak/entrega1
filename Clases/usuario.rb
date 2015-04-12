@@ -1,25 +1,19 @@
 class Usuario
 	
 	attr_accessor :nombre
-	attr_accessor :contraseña
+	attr_accessor :password
 	attr_accessor :estado
 
-	def initialize (unNombre, unaContraseña)
+	def initialize (nombre ,password)
 
-		@nombre = unNombre
-		@contraseña = unaContraseña
-	end
+		@nombre = nombre
+		@password = password
+    end
 
-	def verificar_contraseña (pass)
+    def verificacion_password (unaPassword)
 
-		if @contraseña == pass
-			return true
-		else
-			return false
-		end
-
-	end
-
-
+    	return @password == unaPassword
+    	
+    end
 
 end
