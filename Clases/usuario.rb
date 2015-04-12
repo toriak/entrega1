@@ -16,4 +16,8 @@ class Usuario
     	
     end
 
+    def verificacion_nombre (unNombre)
+
+    	return @nombre == unNombre
+    end
 end
