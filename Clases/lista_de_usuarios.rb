@@ -2,6 +2,9 @@ require_relative 'usuario.rb'
 
 class ListaDeUsuario
 
+	#este getter solo sirve para el funcionamiento del test de esta clase
+	attr_reader :lista_de_usuarios 
+
 	def initialize
 		@lista_de_usuarios = []
 
