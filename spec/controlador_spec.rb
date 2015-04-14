@@ -9,7 +9,7 @@ describe Controlador do
 	end
 
 	describe "initialize" do
-		it "" do
+		it "si al ejecutarce crea correctamente la variable lista_de_usuarios" do
 			lista_del_controlador = @controlador.lista
 			expect(lista_del_controlador.class).to be(ListaDeUsuario)
 		end
@@ -34,6 +34,15 @@ describe Controlador do
 	end
 
 	describe "agregar" do
+
+		it "si se agrega correctamente un usuario" do
+
+			expect(@controlador.agregar"monolo", 1634).to be(true)
+		end
+
+		it "si se agrega un usuario con numeros en el nombre y letras en la password" do
+			expect(@controlador.agregar(1234, "monolo")).to be(true)
+		end
 
 	end	
 end

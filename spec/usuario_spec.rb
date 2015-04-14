@@ -13,6 +13,15 @@ describe Usuario do
 			expect(usuario.password).to   eq(22)
 
 		end
+	
+		it "crea correcta de un usuario que en su nombre contenga una ñ " do 
+
+			usuario = Usuario.new "ñoño", "lucas"
+
+			expect(usuario.nombre).to   eq("ñoño")
+			expect(usuario.password).to   eq("lucas")
+
+		end
 	end
 
 	describe "verificacion_password" do

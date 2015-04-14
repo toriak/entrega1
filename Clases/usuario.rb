@@ -4,6 +4,7 @@ class Usuario
 	attr_accessor :password
 	attr_accessor :estado
 
+	#el usuario puede posee como nombre letras o numeros a igual que con el password
 	def initialize (nombre ,password)
 
 		@nombre = nombre
