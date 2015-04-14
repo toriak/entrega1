@@ -7,18 +7,18 @@ class Usuario
 	#el usuario puede posee como nombre letras o numeros a igual que con el password
 	def initialize (nombre ,password)
 
-		@nombre = nombre
-		@password = password
+		self.nombre= nombre
+		self.password= password
     end
 
     def verificacion_password (unaPassword)
 
-    	return @password == unaPassword
+    	return self.password == unaPassword
     	
     end
 
     def verificacion_nombre (unNombre)
 
-    	return @nombre == unNombre
+    	return self.nombre == unNombre
     end
 end
