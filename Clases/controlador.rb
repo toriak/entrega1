@@ -2,6 +2,9 @@ require_relative 'lista_de_usuarios.rb'
 
 class Controlador
 
+	#este mensaje solo es utilizado para el funcionamiento de los test
+	attr_reader :lista
+
 	def initialize
 
 		@lista = ListaDeUsuario.new

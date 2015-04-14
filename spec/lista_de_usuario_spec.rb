@@ -23,7 +23,7 @@ describe ListaDeUsuario do
 			expect(@lista.buscar "raul",22).to be(true)
 		end
 
-		it "no agrega otro objeto a la lista" do
+		it "no agrega otro tipo de objeto a la lista" do
 =begin	
 			cuando se le envia el mensaje a la lista de agregar esta al terminar de ejecutarce retorna
 				-true si es que se a agregado correctamente
@@ -32,6 +32,11 @@ describe ListaDeUsuario do
 			resultado = @lista.agregar_usuario (ListaDeUsuario.new)
 			expect(resultado).to be(false)
 
+			resultado = @lista.agregar_usuario (22)
+			expect(resultado).to be(false)
+
+			resultado = @lista.agregar_usuario ("soy un string")
+			expect(resultado).to be(false)
 		end
 	end
 
