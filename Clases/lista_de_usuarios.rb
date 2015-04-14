@@ -9,7 +9,7 @@ class ListaDeUsuario
 		@lista_de_usuarios = []
 
 	end
-
+	# => metodo para agregar un usuario nuevo a la lista
 	def agregar_usuario(nombre_usuario, password)
 
 		resultado = self.existe_nombre_usuario(nombre_usuario)
@@ -21,6 +21,7 @@ class ListaDeUsuario
 		end
 	end
 
+	# => este metodo sirve para verificar que un usuario con su respectiva password exista
 	def buscar(nombre_de_usuario, password)
 
 		self.lista_de_usuarios.each do |usuario_de_lista|
@@ -36,7 +37,9 @@ class ListaDeUsuario
 
 		return false
 	end
-		
+	
+	# => este metodo se utiliza para verificar que el nombre del usuario a quien se quiere registrar esta disponible, 
+	# => es decir que no exista en la lista
 	def existe_nombre_usuario (nombre_de_usuario)
 		
 		self.lista_de_usuarios.each do |usuario_de_lista|
