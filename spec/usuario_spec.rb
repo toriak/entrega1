@@ -9,8 +9,8 @@ describe Usuario do
 
 			usuario = Usuario.new "raul", 22
 
-			expect(usuario.nombre).to   eq("raul")
-			expect(usuario.password).to   eq(22)
+			expect(usuario.verificacion_nombre"raul").to be(true)
+			expect(usuario.verificacion_password 22).to  be(true)
 
 		end
 	
@@ -18,8 +18,8 @@ describe Usuario do
 
 			usuario = Usuario.new "ñoño", "lucas"
 
-			expect(usuario.nombre).to   eq("ñoño")
-			expect(usuario.password).to   eq("lucas")
+			expect(usuario.verificacion_nombre "ñoño").to   be(true)
+			expect(usuario.verificacion_password "lucas").to be(true)
 
 		end
 	end
