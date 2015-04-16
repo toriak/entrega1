@@ -64,8 +64,31 @@ describe TextoPlano do
 
 	describe "cifrar_password_para_verificacion" do 
 
-		it "conprobar que cifre un string"
-		it "comprobar que cifre numeros"
+		it "conprobar que cifre un string" do
+
+			texto_cifrado = texto_plano.cifrar "hola"
+			texto_para_verificar = texto_plano.cifrar_password_para_verificacion "hola"
+			expect(texto_cifrado).to eq(texto_para_verificar)
+
+			texto_cifrado = texto_plano.cifrar "a las 22"
+			texto_para_verificar = texto_plano.cifrar_password_para_verificacion "a las 22"
+			expect(texto_cifrado).to eq(texto_para_verificar)
+
+			texto_cifrado = texto_plano.cifrar "@@ 22 aa"
+			texto_para_verificar = texto_plano.cifrar_password_para_verificacion "@@ 22 aa"
+			expect(texto_cifrado).to eq(texto_para_verificar)
+		end
+
+		it "comprobar que cifre numeros" do
+
+			texto_cifrado = texto_plano.cifrar 123
+			texto_para_verificar = texto_plano.cifrar_password_para_verificacion 123
+			expect(texto_cifrado).to eq(texto_para_verificar)
+
+			texto_cifrado = texto_plano.cifrar 504
+			texto_para_verificar = texto_plano.cifrar_password_para_verificacion 504
+			expect(texto_cifrado).to eq(texto_para_verificar)
+		end
 	end
 	
 end
