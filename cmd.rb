@@ -1,28 +1,9 @@
 require 'highline/import'
+require_relative 'Clases/controlador.rb'
+require_relative 'vista.rb'
 
-	salir = false;
-		while !salir do
-  			choose do |menu|
-    		
-    		menu.prompt = "Que desea hacer?"
+  controlador = Controlador.new
 
-    		menu.choice(:Salir) {
-      			salir = true
-      			say("\n\t Sale de la aplicación \n\n")
-    		}
+  vista = Vista.new(controlador)
 
-    		menu.choice(:Logout){
-    			say("\n\t Deslogueando... \n\n")
-    		}
-
-    		menu.choice(:Login){
-    			say("\n\t Logueando... \n")
-    		}	
-
-    		menu.choice(:Estado) do
-	    		say("\n\t Tu estado es ... \n\n")
-    		end
-    	end
-  	end
-
-
+  vista.vista_de_inicio
