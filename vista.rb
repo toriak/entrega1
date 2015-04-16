@@ -10,26 +10,25 @@ class Vista
 
 		salir = false;
 			while !salir do
+				puts "Seleccione una accion:"
   				choose do |menu|
-    		
-    			menu.prompt = "Que desea hacer?"
+
+    			menu.choice(:Login){
+    				say("\n\t Logueando... \n")
+    			}
+
+    			menu.choice(:Logout){
+    				say("\n\t Deslogueando... \n\n")
+    			}				
+
+    			menu.choice(:Estado) do
+	    			say("\n\t Tu estado es ... \n\n")
+    			end
 
     			menu.choice(:Salir) {
       				salir = true
       				say("\n\t Sale de la aplicación \n\n")
     			}
-
-    			menu.choice(:Logout){
-    				say("\n\t Deslogueando... \n\n")
-    			}
-
-    			menu.choice(:Login){
-    				say("\n\t Logueando... \n")
-    			}	
-
-    			menu.choice(:Estado) do
-	    			say("\n\t Tu estado es ... \n\n")
-    			end
     		end
   		end
 	end

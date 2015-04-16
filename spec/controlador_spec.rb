@@ -13,6 +13,8 @@ describe Controlador do
 			lista_del_controlador = @controlador.lista
 			expect(lista_del_controlador.class).to be(ListaDeUsuario)
 		end
+		it "cambiar los nombres de los metodos que debuelven un buleano 
+		y agregarle un '?' al final (es convencion)"
 	end
 
 	describe "existe_usuario" do
