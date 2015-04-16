@@ -31,16 +31,41 @@ describe TextoPlano do
 
 	describe "descifrar" do 
 
-		it "si puede descifrar un string"
-		it "si puede descifrar numeros y simbolos"
-		it "si puede descifrar string , numeros y simbolos"
+		it "si puede descifrar un string" do
+
+			#string con letras solamente
+			texto_cifrado = texto_plano.cifrar "hola"
+			texto_descifrado = texto_plano.descifrar texto_cifrado
+			expect(texto_descifrado).to eq("hola")
+
+			#string de letras con numeros
+			texto_cifrado = texto_plano.cifrar "22 el loco"
+			texto_descifrado = texto_plano.descifrar texto_cifrado
+			expect(texto_descifrado).to eq("22 el loco")
+
+			#string de letras con numero y simbolos
+			texto_cifrado = texto_plano.cifrar "hasta m@ñana 22"
+			texto_descifrado = texto_plano.descifrar texto_cifrado
+			expect(texto_descifrado).to eq("hasta m@ñana 22")
+
+		end
+		it "si puede descifrar numeros" do
+
+			texto_cifrado = texto_plano.cifrar 123
+			texto_descifrado = texto_plano.descifrar texto_cifrado
+			expect(texto_descifrado).to eq(123)
+
+			texto_cifrado = texto_plano.cifrar 504
+			texto_descifrado = texto_plano.descifrar texto_cifrado
+			expect(texto_descifrado).to eq(504)
+		end
+
 	end
 
 	describe "cifrar_password_para_verificacion" do 
 
 		it "conprobar que cifre un string"
-		it "comprobar que cifre numeros y simbolos"
-		it "comprobar que cifre string , numeros y simbolos"
+		it "comprobar que cifre numeros"
 	end
 	
 end
