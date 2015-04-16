@@ -27,10 +27,8 @@ class ListaDeUsuario
 		self.lista_de_usuarios.each do |usuario_de_lista|
 			
 			if usuario_de_lista.verificacion_nombre nombre_de_usuario
-			
-				usuario = usuario_de_lista	
 
-				return usuario.verificacion_password password
+				return usuario_de_lista.verificacion_password password
 			end	
 
 		end

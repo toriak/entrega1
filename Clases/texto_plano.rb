@@ -2,14 +2,14 @@ require_relative 'lista_de_usuarios.rb'
 
 class TextoPlano
 
-	def buscar(nombre_de_usuario, password, unaLista)
+	def cifrar(password)
 
-		return unaLista.buscar(nombre_de_usuario, password)
+		return password
 	end
 
-	def agregar(nombre_usuario , password, unaLista)
+	def descifrar(password)
 
-		return unaLista.agregar_usuario(nombre_usuario, password)
+		return password
 	end
 
 end
