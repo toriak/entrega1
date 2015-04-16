@@ -15,7 +15,7 @@ describe Controlador do
 		end
 	end
 
-	describe "buscar" do
+	describe "existe_usuario" do
 		
 		it "si encuentra al usuario base" do
 			#el controlador posee un usuario base llamado andres y con password 1234

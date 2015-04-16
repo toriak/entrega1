@@ -12,4 +12,9 @@ class TextoPlano
 		return password
 	end
 
+	def cifrar_password_para_verificacion(password)
+
+        return self.cifrar password
+    end
+
 end

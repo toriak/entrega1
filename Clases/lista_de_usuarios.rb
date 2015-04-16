@@ -7,9 +7,10 @@ class ListaDeUsuario
 
 	def initialize
 		@lista_de_usuarios = []
-		#@codificador = TextoPlano.new
-		@codificador = CifradoCesar.new
-		
+		@codificador = TextoPlano.new
+		#@codificador = CifradoCesar.new
+		#@codificador = BcrypCifrado.new
+
 	end
 	# => metodo para agregar un usuario nuevo a la lista
 	def agregar_usuario(nombre_usuario, password)
@@ -32,7 +33,8 @@ class ListaDeUsuario
 			
 			if usuario_de_lista.verificacion_nombre nombre_de_usuario
 
-				password_cifrado = @codificador.cifrar(password)
+				password_cifrado = @codificador.cifrar_password_para_verificacion (password)
+
 				return usuario_de_lista.verificacion_password password_cifrado
 			end	
 
