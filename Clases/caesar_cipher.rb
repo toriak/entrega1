@@ -19,8 +19,7 @@ class CifradoCesar
 
     def cifrar_password_para_verificacion(password)
 
-        password_cifrado = @caesar.cipher(password.to_s)
-        return password_cifrado
+        return self.cifrar password
     end
 
 end
