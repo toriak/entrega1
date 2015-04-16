@@ -1,20 +1,24 @@
 require_relative 'usuario.rb'
+require_relative 'texto_plano.rb'
+require_relative 'caesar_cipher.rb'
+require_relative 'bcrypt.rb'
 
 class ListaDeUsuario
 
-	#este getter solo sirve para el funcionamiento del test de esta clase
-	attr_reader :lista_de_usuarios 
-
 	def initialize
 		@lista_de_usuarios = []
-
+		#@codificador = TextoPlano.new
+		@codificador = CifradoCesar.new
+		
 	end
 	# => metodo para agregar un usuario nuevo a la lista
 	def agregar_usuario(nombre_usuario, password)
 
 		resultado = self.existe_nombre_usuario(nombre_usuario)
-		if resultado == false
-			self.lista_de_usuarios << Usuario.new(nombre_usuario, password)
+		if not resultado 
+
+			password_cifrado = @codificador.cifrar(password)
+			@lista_de_usuarios << Usuario.new(nombre_usuario, password_cifrado)
 			return true
 		else
 			return false
@@ -22,13 +26,14 @@ class ListaDeUsuario
 	end
 
 	# => este metodo sirve para verificar que un usuario con su respectiva password exista
-	def buscar(nombre_de_usuario, password)
+	def existe_usuario(nombre_de_usuario, password)
 
-		self.lista_de_usuarios.each do |usuario_de_lista|
+		@lista_de_usuarios.each do |usuario_de_lista|
 			
 			if usuario_de_lista.verificacion_nombre nombre_de_usuario
 
-				return usuario_de_lista.verificacion_password password
+				password_cifrado = @codificador.cifrar(password)
+				return usuario_de_lista.verificacion_password password_cifrado
 			end	
 
 		end
@@ -40,7 +45,7 @@ class ListaDeUsuario
 	# => es decir que no exista en la lista
 	def existe_nombre_usuario (nombre_de_usuario)
 		
-		self.lista_de_usuarios.each do |usuario_de_lista|
+		@lista_de_usuarios.each do |usuario_de_lista|
 			
 			if usuario_de_lista.verificacion_nombre nombre_de_usuario
 				return true
