@@ -15,9 +15,14 @@ class Vista
   				choose do |menu|
 
     			menu.choice(:Login){
-   					say "Usted se ha logueado exitosamente!" 
-   					salir = self.vista_de_usuario_logueado
-    			}				
+
+    				if @controlador.existe_usuario("andres",1234)
+    					say "Usted se ha logueado exitosamente!" 
+    					salir = self.vista_de_usuario_logueado
+    				else
+    					say "Nombre de usuario o contraseña incorrecta \n"
+    				end
+   				}				
 
     			menu.choice(:Estado) do
 	    			say("\n\t Tu estado es ... \n\n")
