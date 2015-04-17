@@ -4,12 +4,12 @@ class TextoPlano
 
 	def cifrar(password)
 
-		return password
+		return password.to_s
 	end
 
 	def descifrar(password)
 
-		return password
+		return password.to_s
 	end
 
 	def cifrar_password_para_verificacion(password)

@@ -21,10 +21,10 @@ describe TextoPlano do
 		it "si puede cifrar numeros " do
 
 			texto_cifrado = texto_plano.cifrar 1234
-			expect(texto_cifrado == 1234).to be(true)
+			expect(texto_cifrado == "1234").to be(true)
 
 			texto_cifrado = texto_plano.cifrar 9134
-			expect(texto_cifrado == 9134).to be(true)
+			expect(texto_cifrado == "9134").to be(true)
 
 		end
 	end
@@ -53,11 +53,11 @@ describe TextoPlano do
 
 			texto_cifrado = texto_plano.cifrar 123
 			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq(123)
+			expect(texto_descifrado).to eq("123")
 
 			texto_cifrado = texto_plano.cifrar 504
 			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq(504)
+			expect(texto_descifrado).to eq("504")
 		end
 
 	end
