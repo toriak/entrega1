@@ -4,9 +4,10 @@ class Vista
 
 	def initialize(unControlador)
 		@controlador = unControlador
+		self.vista_de_usuario_deslogueado
 	end
 	
-	def vista_de_inicio
+	def vista_de_usuario_deslogueado
 
 		salir = false;
 			while !salir do
@@ -14,11 +15,8 @@ class Vista
   				choose do |menu|
 
     			menu.choice(:Login){
-    				say("\n\t Logueando... \n")
-    			}
-
-    			menu.choice(:Logout){
-    				say("\n\t Deslogueando... \n\n")
+   					say "Usted se ha logueado exitosamente!" 
+   					salir = self.vista_de_usuario_logueado
     			}				
 
     			menu.choice(:Estado) do
@@ -27,11 +25,33 @@ class Vista
 
     			menu.choice(:Salir) {
       				salir = true
-      				say("\n\t Sale de la aplicación \n\n")
+      				say("\t Adios, vuelva pronto \n")
     			}
     		end
   		end
 	end
-	
 
+	def vista_de_usuario_logueado
+
+		salir = false;
+			while !salir do
+				puts "Seleccione una accion:"
+  				choose do |menu|
+
+    			menu.choice(:Logout){
+    				say("\n\t Deslogueando... \n\n")
+    				return false
+    			}				
+
+    			menu.choice(:Estado) do
+	    			say("\n\t Tu estado es logueado \n\n")
+    			end
+
+    			menu.choice(:Salir) {
+      				say("\t Adios, vuelva pronto \n")
+      				return true
+    			}
+    		end
+  		end
+	end
 end
