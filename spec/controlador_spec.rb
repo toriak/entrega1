@@ -13,25 +13,23 @@ describe Controlador do
 			lista_del_controlador = @controlador.lista
 			expect(lista_del_controlador.class).to be(ListaDeUsuario)
 		end
-		it "cambiar los nombres de los metodos que debuelven un buleano 
-		y agregarle un '?' al final (es convencion)"
 	end
 
-	describe "existe_usuario" do
+	describe "existe_usuario?" do
 		
 		it "si encuentra al usuario base" do
 			#el controlador posee un usuario base llamado andres y con password 1234
-			expect(@controlador.existe_usuario("andres", 1234)).to be(true)
+			expect(@controlador.existe_usuario?("andres", 1234)).to be(true)
 		end	
 
 		it "si encuentra a un usuario recien agregado" do
 			@controlador.agregar_usuario("pedro", 999)
-			expect(@controlador.existe_usuario("pedro", 999)).to be(true)
+			expect(@controlador.existe_usuario?("pedro", 999)).to be(true)
 		end
 
 		it "si encuentra a un usuario que no existe" do
 
-			expect(@controlador.existe_usuario"jorje",146).to be(false)
+			expect(@controlador.existe_usuario?"jorje",146).to be(false)
 		end
 	end
 

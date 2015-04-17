@@ -12,8 +12,8 @@ class Controlador
 		self.agregar_usuario("andres", 1234)
 	end
 
-	def existe_usuario(nombre_de_usuario, password)
-	
+	def existe_usuario?(nombre_de_usuario, password)
+
 		return self.lista.existe_usuario(nombre_de_usuario, password)
 	end
 
