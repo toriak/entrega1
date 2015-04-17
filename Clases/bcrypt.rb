@@ -4,7 +4,7 @@ class BcrypCifrado
 
     def cifrar (password)
 
-    	password_cifrado = BCrypt::Password.create(password)
+    	password_cifrado = BCrypt::Password.create(password.to_s)
     	return password_cifrado
     end
     

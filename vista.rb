@@ -8,26 +8,25 @@ class Vista
 	end
 	
 	def vista_de_usuario_deslogueado
-
 		salir = false;
 			while !salir do
 				puts "Seleccione una accion:"
   				choose do |menu|
-
     			menu.choice(:Login){
-
-    				if @controlador.existe_usuario("andres",1234)
+    				nombre_usuario = ask("nombre de usuario:",String)
+    				password = ask("Password:",String){ 
+    					|password| password.echo = "·"
+    				}
+    				if @controlador.existe_usuario(nombre_usuario,password)
     					say "Usted se ha logueado exitosamente!" 
     					salir = self.vista_de_usuario_logueado
     				else
     					say "Nombre de usuario o contraseña incorrecta \n"
     				end
    				}				
-
     			menu.choice(:Estado) do
 	    			say("\n\t Tu estado es ... \n\n")
     			end
-
     			menu.choice(:Salir) {
       				salir = true
       				say("\t Adios, vuelva pronto \n")
