@@ -34,7 +34,9 @@ class Vista
   		end
 	end
 
-	def vista_de_usuario_logueado
+	def vista_de_usuario_logueado(nombre)
+
+    nombre_usuario = nombre
 
 			while !@salir do
 				say "Seleccione una accion:"
@@ -46,7 +48,7 @@ class Vista
     			}
 
     			menu.choice(:Estado) do
-	    			say("\t Tu estado es logueado\n")
+	    			say("\t Tu estado es logueado como #{nombre_usuario}\n")
     			end
 
     			menu.choice(:Salir) {
@@ -60,34 +62,32 @@ class Vista
   def accion_menu_login
 
     nombre_usuario = ask("nombre de usuario: ",String)
+    password = ask("Password: ",String){
+      |password| password.echo = "·"
+    }
 
-      password = ask("Password: ",String){
-        |password| password.echo = "·"
-      }
+    if @controlador.existe_usuario?(nombre_usuario,password)
 
-      if @controlador.existe_usuario?(nombre_usuario,password)
-
-        say "\t Usted se ha logueado exitosamente!"
-        @salir = self.vista_de_usuario_logueado
-      else
-        say "\tNombre de usuario o contraseña incorrecta \n"
-      end
+      say "\t Usted se ha logueado exitosamente!"
+      @salir = self.vista_de_usuario_logueado
+    else
+      say "\tNombre de usuario o contraseña incorrecta \n"
+    end
   end
 
   def accion_menu_registrar
 
     nombre_usuario = ask("nombre de usuario: ",String)
+    password = ask("Password: ",String){
+      |password| password.echo = "·"
+    }
 
-      password = ask("Password: ",String){
-        |password| password.echo = "·"
-      }
+    if @controlador.agregar_usuario(nombre_usuario,password)
 
-      if @controlador.agregar_usuario(nombre_usuario,password)
-
-        say "\t Usted se ha registrado exitosamente!"
-      else
-        say "\tNombre de usuario ocupado \n"
-      end
+      say "\t Usted se ha registrado exitosamente!"
+    else
+      say "\tNombre de usuario ocupado \n"
+    end
 
   end
 end
