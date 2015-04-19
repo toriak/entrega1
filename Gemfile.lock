@@ -5,9 +5,11 @@ GEM
     caesar_cipher (0.0.2)
       methadone (~> 1.2.4)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     highline (1.7.1)
     methadone (1.2.6)
       bundler
+    multi_json (1.11.0)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -21,6 +23,11 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    simplecov (0.9.2)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.9.0)
+    simplecov-html (0.9.0)
 
 PLATFORMS
   ruby
@@ -30,3 +37,4 @@ DEPENDENCIES
   caesar_cipher (~> 0.0.2)
   highline (~> 1.7.1)
   rspec (~> 3.2.0)
+  simplecov
