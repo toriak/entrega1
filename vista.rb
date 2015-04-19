@@ -114,14 +114,25 @@ class Vista
       return false
     }
     menu.choice(:CaesarCipher) do
-      say("\t Caesar Cipher\n")
-      @controlador.cifrado_caesar_cipher
+
+      if @controlador.cifrado_caesar_cipher
+        say("\t se a cambiado la encriptacion a Caesar Cipher correctamente\n")
+      else
+        say("\t se a cambiado la encriptacion a Caesar Cipher correctamente\t
+          pero se a cambiado la password de todos los usuarios por 1234\n")
+      end
+      return false
     end
 
     menu.choice(:BCrypt) {
-      say("\t BCrypt\n")
-      @controlador.cifrado_bcrypt
-      return true
+
+      if @controlador.cifrado_bcrypt
+        say("\t se a cambiado la encriptacion a BCrypt correctamente\n")
+      else
+        say("\t se a cambiado la encriptacion a BCrypt correctamente\t
+          pero se a cambiado la password de todos los usuarios por 1234\n")
+      end
+      return false
       }
       end
   end

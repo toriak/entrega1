@@ -23,12 +23,12 @@ class Controlador
 	end
 
 	def cifrado_texto_plano
-    	@lista.cifrado_texto_plano
+    	return @lista.cifrado_texto_plano
     end
     def cifrado_caesar_cipher
-   		@lista.cifrado_caesar_cipher
+   		return @lista.cifrado_caesar_cipher
    	end
    	def cifrado_bcrypt
-   		@lista.cifrado_bcrypt
+   		return @lista.cifrado_bcrypt
    	end
 end

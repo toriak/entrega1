@@ -5,11 +5,12 @@ require_relative 'bcrypt.rb'
 
 class ListaDeUsuario
 
+	#este getter solo es utilizados para los test
+	attr_reader :codificador
+
 	def initialize
 		@lista_de_usuarios = []
-		#@codificador = TextoPlano.new
-		#@codificador = CifradoCesar.new
-		@codificador = BcrypCifrado.new
+		self.cifrado_texto_plano
 
 	end
 	# => metodo para agregar un usuario nuevo a la lista
@@ -55,32 +56,54 @@ class ListaDeUsuario
 		return false
 	end
 
+	################### Metodos para cambio de tipo de cifrado ############################
 	def cifrado_texto_plano
 
-		clase_cifrador = @codificador.class
-		if clase_cifrador == BcrypCifrado
-
-			cambio_cifrado(TextoPlano.new)
-			return false
-		else
-			cambio_cifrado(TextoPlano.new)
+		clase_codificador = @codificador.class
+		if  clase_codificador == TextoPlano
 			return true
-		end
+		else
+			return self.cambio_cifrado_estructura(TextoPlano.new)
+    	end
     end
 
     def cifrado_caesar_cipher
+
+    	clase_codificador = @codificador.class
+		if  clase_codificador == CifradoCesar
+			return true
+		else
+			return self.cambio_cifrado_estructura(CifradoCesar.new)
+    	end
    	end
+
    	def cifrado_bcrypt
+
+   		clase_codificador = @codificador.class
+		if  clase_codificador == BcrypCifrado
+			return true
+		else
+			return self.cambio_cifrado_estructura(BcrypCifrado.new)
+    	end
+   	end
+
+   	##### estructuras para poder llevar a cabo el cambio de tipo de cifrado #####
+   	def cambio_cifrado_estructura(codificado_nuevo)
+
+   		clase_cifrador = @codificador.class
+		if clase_cifrador == BcrypCifrado
+			cambio_cifrado(codificado_nuevo)
+			return false
+		else
+			cambio_cifrado(codificado_nuevo)
+			return true
+		end
    	end
 
    	def cambio_cifrado(codificado_nuevo)
-
    		@lista_de_usuarios.each do |usuario_de_lista|
-
 			usuario_de_lista.cambiar_cifrado(@codificador,codificado_nuevo)
-
 		end
 		@codificador = codificado_nuevo
-
    	end
 end
