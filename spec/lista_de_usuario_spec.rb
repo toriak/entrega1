@@ -1,13 +1,13 @@
 require_relative '../Clases/lista_de_usuarios.rb'
 
 describe ListaDeUsuario do
-	
+
 	let (:lista) {ListaDeUsuario.new}
-	
+
 	#before(:example) do
     #	@lista = ListaDeUsuario.new
   	#end
-  	
+
 	describe "agregar_usuario" do
 
 		it "agrega un Usuario nuevo" do
@@ -28,6 +28,20 @@ describe ListaDeUsuario do
 
 		it "encuentra a un usuario que no esta en la lista" do
 			resultado = lista.existe_usuario"Jose" ,1234
+			expect(resultado).to be(false)
+		end
+	end
+
+	describe "existe_nombre_usuario" do
+
+		it "encuentra el nombre de un usuario que esta en la lista" do
+			lista.agregar_usuario("Mauro" , 22)
+			resultado = lista.existe_nombre_usuario"Mauro"
+			expect(resultado).to be(true)
+		end
+
+		it "encuentra a un usuario que no esta en la lista" do
+			resultado = lista.existe_nombre_usuario"Jose"
 			expect(resultado).to be(false)
 		end
 	end

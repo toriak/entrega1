@@ -16,11 +16,11 @@ describe Controlador do
 	end
 
 	describe "existe_usuario?" do
-		
+
 		it "si encuentra al usuario base" do
 			#el controlador posee un usuario base llamado andres y con password 1234
 			expect(@controlador.existe_usuario?("andres", 1234)).to be(true)
-		end	
+		end
 
 		it "si encuentra a un usuario recien agregado" do
 			@controlador.agregar_usuario("pedro", 999)
@@ -44,5 +44,9 @@ describe Controlador do
 			expect(@controlador.agregar_usuario(1234, "monolo")).to be(true)
 		end
 
-	end	
+	end
+	describe "test_integral_del_modelo" do
+
+		it "para saber si funciona correctamente el modelo en conjunto"
+	end
 end
