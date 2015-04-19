@@ -45,8 +45,37 @@ describe Controlador do
 		end
 
 	end
+
+
 	describe "test_integral_del_modelo" do
 
-		it "para saber si funciona correctamente el modelo en conjunto"
+		it "para saber si funciona correctamente el cambio de cifrado con el usuario base" do
+
+			@controlador.cifrado_texto_plano
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
+			@controlador.cifrado_caesar_cipher
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
+			@controlador.cifrado_bcrypt
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
+			@controlador.cifrado_texto_plano
+		end
+		it "si funciona bien con un usuario agregado" do
+			#lo mismo pero agregando un usuario primero
+			nombre = "raul"
+			password = "asdf"
+			@controlador.agregar_usuario(nombre,password)
+			@controlador.cifrado_texto_plano
+			expect(@controlador.existe_usuario?(nombre,password)).to be(true)
+			@controlador.cifrado_caesar_cipher
+			expect(@controlador.existe_usuario?(nombre,password)).to be(true)
+			@controlador.cifrado_bcrypt
+			expect(@controlador.existe_usuario?(nombre,password)).to be(true)
+			#al salir del cifrado bcrypt como este no puede ser descifrado
+			#se reemplaza la password original por la password base 1234
+			@controlador.cifrado_caesar_cipher
+			expect(@controlador.existe_usuario?(nombre,"1234")).to be(true)
+			@controlador.cifrado_texto_plano
+			expect(@controlador.existe_usuario?(nombre,"1234")).to be(true)
+		end
 	end
 end

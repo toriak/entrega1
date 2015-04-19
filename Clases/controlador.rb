@@ -3,7 +3,7 @@ require_relative 'lista_de_usuarios.rb'
 class Controlador
 
 	#este mensaje solo es utilizado para el funcionamiento de los test e interaccion con eñ objeto codificador
-	attr_reader :lista 
+	attr_reader :lista
 
 	def initialize
 
