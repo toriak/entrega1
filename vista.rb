@@ -26,6 +26,10 @@ class Vista
 	    			say("\t Tu estado es deslogueado\n")
     			end
 
+          menu.choice(:cifrado)do
+            self.menu_cifrados
+          end
+
     			menu.choice(:Salir) {
       				@salir = true
       				say("\t Adios, vuelva pronto \n")
@@ -51,6 +55,9 @@ class Vista
 	    			say("\t Tu estado es logueado como #{nombre_usuario}\n")
     			end
 
+          menu.choice(:cifrado)do
+            self.menu_cifrados
+          end
     			menu.choice(:Salir) {
       				say("\t Adios, vuelva pronto\n")
       				return true
@@ -69,7 +76,7 @@ class Vista
     if @controlador.existe_usuario?(nombre_usuario,password)
 
       say "\t Usted se ha logueado exitosamente!"
-      @salir = self.vista_de_usuario_logueado
+      @salir = self.vista_de_usuario_logueado(nombre_usuario)
     else
       say "\tNombre de usuario o contraseña incorrecta \n"
     end
@@ -89,5 +96,24 @@ class Vista
       say "\tNombre de usuario ocupado \n"
     end
 
+  end
+
+  def menu_cifrados
+    say "Seleccione una opcion de cifrado:"
+    choose do |menu|
+
+    menu.choice(:textoPlano){
+      say("\t Txto Plano\n")
+      return false
+    }
+    menu.choice(:CaesarCipher) do
+      say("\t Caesar Cipher\n")
+    end
+
+    menu.choice(:BCrypt) {
+      say("\t BCrypt\n")
+      return true
+      }
+      end
   end
 end
