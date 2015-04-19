@@ -7,9 +7,9 @@ class ListaDeUsuario
 
 	def initialize
 		@lista_de_usuarios = []
-		@codificador = TextoPlano.new
+		#@codificador = TextoPlano.new
 		#@codificador = CifradoCesar.new
-		#@codificador = BcrypCifrado.new
+		@codificador = BcrypCifrado.new
 
 	end
 	# => metodo para agregar un usuario nuevo a la lista
@@ -55,4 +55,32 @@ class ListaDeUsuario
 		return false
 	end
 
+	def cifrado_texto_plano
+
+		clase_cifrador = @codificador.class
+		if clase_cifrador == BcrypCifrado
+
+			cambio_cifrado(TextoPlano.new)
+			return false
+		else
+			cambio_cifrado(TextoPlano.new)
+			return true
+		end
+    end
+
+    def cifrado_caesar_cipher
+   	end
+   	def cifrado_bcrypt
+   	end
+
+   	def cambio_cifrado(codificado_nuevo)
+
+   		@lista_de_usuarios.each do |usuario_de_lista|
+
+			usuario_de_lista.cambiar_cifrado(@codificador,codificado_nuevo)
+
+		end
+		@codificador = codificado_nuevo
+
+   	end
 end

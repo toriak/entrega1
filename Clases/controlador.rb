@@ -22,4 +22,13 @@ class Controlador
 		return self.lista.agregar_usuario(nombre_usuario, password)
 	end
 
+	def cifrado_texto_plano
+    	@lista.cifrado_texto_plano
+    end
+    def cifrado_caesar_cipher
+   		@lista.cifrado_caesar_cipher
+   	end
+   	def cifrado_bcrypt
+   		@lista.cifrado_bcrypt
+   	end
 end

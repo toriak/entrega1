@@ -79,6 +79,7 @@ class Vista
       @salir = self.vista_de_usuario_logueado(nombre_usuario)
     else
       say "\tNombre de usuario o contraseña incorrecta \n"
+      @salir = false
     end
   end
 
@@ -103,15 +104,23 @@ class Vista
     choose do |menu|
 
     menu.choice(:textoPlano){
-      say("\t Txto Plano\n")
+
+      if @controlador.cifrado_texto_plano
+        say("\t se a cambiado la encriptacion a Texto Plano correctamente\n")
+      else
+        say("\t se a cambiado la encriptacion a Texto Plano correctamente\n\t
+          pero se a cambiado la password de todos los usuarios por 1234\n")
+      end
       return false
     }
     menu.choice(:CaesarCipher) do
       say("\t Caesar Cipher\n")
+      @controlador.cifrado_caesar_cipher
     end
 
     menu.choice(:BCrypt) {
       say("\t BCrypt\n")
+      @controlador.cifrado_bcrypt
       return true
       }
       end
