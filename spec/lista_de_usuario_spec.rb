@@ -7,17 +7,13 @@ describe ListaDeUsuario do
 
 	let (:lista) {ListaDeUsuario.new}
 
-	#before(:example) do
-    #	@lista = ListaDeUsuario.new
-  	#end
-
 	describe "agregar_usuario" do
 
 		it "agrega un Usuario nuevo" do
 
 			lista.agregar_usuario("raul", 22)
 
-			expect(lista.existe_usuario "raul",22).to be(true)
+			expect(lista.existe_usuario "raul",22)
 		end
 	end
 
@@ -25,7 +21,7 @@ describe ListaDeUsuario do
 
 		it "encuentra a un usuario que esta en la lista" do
 			lista.agregar_usuario("Mauro" , 22)
-			resultado = lista.existe_usuario"Mauro" ,22
+			resultado = lista.existe_usuario "Mauro" ,22
 			expect(resultado).to be(true)
 		end
 
@@ -53,7 +49,7 @@ describe ListaDeUsuario do
 		it "que cambie el tipo de codificador a texto plano desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_texto_plano
-			expect(lista.existe_usuario "raul",22)
+			expect(lista.existe_usuario "raul",22).to be(true)
 		end
 	end
 

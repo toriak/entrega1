@@ -11,18 +11,17 @@ describe Usuario do
 		it "crea correcta de un usuario" do
 
 			usuario = Usuario.new "raul", 22
-
-			expect(usuario.verificacion_nombre"raul").to be(true)
-			expect(usuario.verificacion_password 22).to  be(true)
+			expect(usuario.verificacion_nombre"raul")
+			expect(usuario.verificacion_password 22)
 
 		end
 
-		it "crea correcta de un usuario que en su nombre contenga una ñ " do 
+		it "crea correcta de un usuario que en su nombre contenga una ñ " do
 
 			usuario = Usuario.new "ñoño", "lucas"
 
-			expect(usuario.verificacion_nombre "ñoño").to   be(true)
-			expect(usuario.verificacion_password "lucas").to be(true)
+			expect(usuario.verificacion_nombre "ñoño")
+			expect(usuario.verificacion_password "lucas")
 
 		end
 	end
@@ -31,11 +30,11 @@ describe Usuario do
 
 		usuario = Usuario.new "lucas" , 33
 		it "retorna true cuando la password es la correcta" do
-			expect(usuario.verificacion_password 33).to be(true)
+			expect(usuario.verificacion_password 33)
 		end
 
 		it "retorna false cuando la password es incorrecta" do
-			expect(usuario.verificacion_password 322).to be(false)
+			expect(usuario.verificacion_password 323)
 		end
 	end
 
@@ -43,11 +42,11 @@ describe Usuario do
 		usuario = Usuario.new "jorje" , 42
 
 		it "retorna true cuando el nombre es el correcto" do
-			expect(usuario.verificacion_nombre "jorje").to be(true)
+			expect(usuario.verificacion_nombre "jorje")
 		end
 
 		it "retorna false cuando el nombre es incorrecto" do
-			expect(usuario.verificacion_nombre "manuela").to be(false)
+			expect(usuario.verificacion_nombre "manuela")
 		end
 
 	end
@@ -64,7 +63,7 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 			usuario.cambiar_cifrado(codificador, codificador)
 
-			expect(usuario.verificacion_password "1234").to be(true)
+			expect(usuario.verificacion_password "1234")
 		end
 		it "entre bcrypt a texto plano" do
 
@@ -77,7 +76,7 @@ describe Usuario do
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 
-			expect(usuario.verificacion_password "1234").to be(true)
+			expect(usuario.verificacion_password "1234")
 		end
 		it "entre bcrypt a caesar cipher" do
 
@@ -90,7 +89,7 @@ describe Usuario do
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 
-			expect(usuario.verificacion_password "1234").to be(true)
+			expect(usuario.verificacion_password "1234")
 		end
 
 		####### partiendo de TEXTO PLANO a otro codificador #######
@@ -105,8 +104,8 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
 
 		it "entre Texto Plano a texto plano" do
@@ -119,8 +118,8 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
 
 		it "entre Texto Plano a cifrado cesar" do
@@ -133,8 +132,8 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
 
 		####### partiendo de Caesar Cipher a otro codificador #######
@@ -149,10 +148,9 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
-
 		it "entre Caesar Cipher a texto plano" do
 
 			codificador = CifradoCesar.new
@@ -163,10 +161,9 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
-
 		it "entre Caesar Cipher a caesar cipher" do
 
 			codificador = CifradoCesar.new
@@ -177,8 +174,8 @@ describe Usuario do
 			usuario = Usuario.new("jorje", password_cifrado)
 
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
-			expect(usuario.verificacion_password codificador_nuevo.cifrar_password_para_verificacion password).to be(true)
+			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
+			expect(usuario.verificacion_password password_para_verificar)
 		end
 	end
 end
