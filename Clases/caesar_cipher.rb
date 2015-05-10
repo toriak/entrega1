@@ -2,6 +2,9 @@ require 'caesar_cipher'
 
 class CifradoCesar
 
+    # esta clase puede codificar solo las letras pero no los numeros y los simbolos
+    # esto no quita que el string a codificar no pueda tener numeros o simbolos
+
     def initialize
         @caesar = CaesarCipher::Caesar.new
     end

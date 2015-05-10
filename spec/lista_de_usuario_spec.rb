@@ -39,8 +39,7 @@ describe ListaDeUsuario do
 
 		it "encuentra el nombre de un usuario que esta en la lista" do
 			lista.agregar_usuario("Mauro" , 22)
-			resultado = lista.existe_nombre_usuario"Mauro"
-			expect(resultado).to be(true)
+			expect(lista.existe_nombre_usuario"Mauro")
 		end
 
 		it "encuentra a un usuario que no esta en la lista" do
@@ -52,28 +51,27 @@ describe ListaDeUsuario do
 	describe "cifrado_texto_plano" do
 
 		it "que cambie el tipo de codificador a texto plano desde texto plano" do
+			lista.agregar_usuario("raul", 22)
 			lista.cifrado_texto_plano
-			codificador_de_lista = lista.codificador
-			expect(codificador_de_lista.class).to be(TextoPlano)
+			expect(lista.existe_usuario "raul",22)
 		end
 	end
 
 	describe "cifrado_caesar_cipher" do
 
-		it "que cambie el tipo de codificador a texto plano desde texto plano" do
+		it "que cambie el tipo de codificador a cifrado_caesar_cipher desde texto plano" do
+			lista.agregar_usuario("raul", 22)
 			lista.cifrado_caesar_cipher
-			codificador_de_lista = lista.codificador
-			expect(codificador_de_lista.class).to be(CifradoCesar)
+			expect(lista.existe_usuario "raul",22)
 		end
 	end
 
 	describe "cifrado_bcrypt" do
 
-		it "que cambie el tipo de codificador a texto plano desde texto plano" do
+		it "que cambie el tipo de codificador a cifrado_bcrypt desde texto plano" do
+			lista.agregar_usuario("raul", 22)
 			lista.cifrado_bcrypt
-			codificador_de_lista = lista.codificador
-			expect(codificador_de_lista.class).to be(BcrypCifrado)
+			expect(lista.existe_usuario "raul",22)
 		end
 	end
-
 end
