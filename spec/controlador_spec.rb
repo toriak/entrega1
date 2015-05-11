@@ -51,24 +51,25 @@ describe Controlador do
 
 		it "para saber si funciona correctamente el cambio de cifrado con el usuario base" do
 
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
 			@controlador.cifrado_texto_plano
-			expect(@controlador.existe_usuario?("andres",1234))
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
 			@controlador.cifrado_caesar_cipher
-			expect(@controlador.existe_usuario?("andres",1234))
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
 			@controlador.cifrado_bcrypt
-			expect(@controlador.existe_usuario?("andres",1234))
-			@controlador.cifrado_texto_plano
+			expect(@controlador.existe_usuario?("andres",1234)).to be(true)
 		end
 		it "si funciona bien con un usuario agregado" do
 			nombre = "raul"
 			password = "asdf"
-			@controlador.agregar_usuario(nombre,password)
+			@controlador.agregar_usuario("raul","asdf")
+			expect(@controlador.existe_usuario?("raul","asdf")).to be(true)
 			@controlador.cifrado_texto_plano
-			expect(@controlador.existe_usuario?(nombre,password))
+			expect(@controlador.existe_usuario?("raul","asdf")).to be(true)
 			@controlador.cifrado_caesar_cipher
-			expect(@controlador.existe_usuario?(nombre,password))
+			expect(@controlador.existe_usuario?(nombre,password)).to be(true)
 			@controlador.cifrado_bcrypt
-			expect(@controlador.existe_usuario?(nombre,password))
+			expect(@controlador.existe_usuario?(nombre,password)).to be(true)
 			#al salir del cifrado bcrypt como este no puede ser descifrado
 			#se reemplaza la password original por la password base 1234
 			@controlador.cifrado_caesar_cipher

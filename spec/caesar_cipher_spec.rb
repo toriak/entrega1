@@ -9,13 +9,13 @@ describe CifradoCesar do
 		it "si puede cifrar string" do
 			#string con letras
 			texto_cifrado = caesar_cipher.cifrar "hola"
-			expect(texto_cifrado == "lspe")
+			expect(texto_cifrado == "lspe").to be(true)
 			#string de letras y numeros
 			texto_cifrado = caesar_cipher.cifrar "22 el loco"
 			expect(texto_cifrado == "22 ip psgs").to be(true)
 			#string de letras, numero y simbolos
 			texto_cifrado = caesar_cipher.cifrar "hasta m@ñana 22"
-			expect(texto_cifrado == "lewxe q@ñere 22")
+			expect(texto_cifrado == "lewxe q@ñere 22").to be(true)
 		end
 
 		it "no cifra numeros " do

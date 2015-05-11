@@ -2,6 +2,7 @@ require_relative 'usuario.rb'
 require_relative 'texto_plano.rb'
 require_relative 'caesar_cipher.rb'
 require_relative 'bcrypt.rb'
+require_relative 'codificadores.rb'
 
 class ListaDeUsuario
 
@@ -10,12 +11,11 @@ class ListaDeUsuario
 
 	def initialize
 		@lista_de_usuarios = []
-		self.cifrado_texto_plano
-
+		#self.cifrado_texto_plano
+		@codificador = CifradoCesar.new
 	end
 	# => metodo para agregar un usuario nuevo a la lista
 	def agregar_usuario(nombre_usuario, password)
-
 		resultado = self.existe_nombre_usuario(nombre_usuario)
 		if not resultado
 			password_cifrado = @codificador.cifrar(password)
@@ -28,7 +28,6 @@ class ListaDeUsuario
 
 	# => este metodo sirve para verificar que un usuario con su respectiva password exista
 	def existe_usuario(nombre_de_usuario, password)
-
 		password_cifrado = @codificador.cifrar_password_para_verificacion (password)
 		lista = @lista_de_usuarios.collect {|usuario|
 			usuario.verificacion_nombre nombre_de_usuario and
@@ -40,13 +39,25 @@ class ListaDeUsuario
 	# => este metodo se utiliza para verificar que el nombre del usuario a quien se quiere registrar esta disponible, 
 	# => es decir que no exista en la lista
 	def existe_nombre_usuario (nombre_de_usuario)
-
 		lista = @lista_de_usuarios.collect {|usuario|
 			usuario.verificacion_nombre nombre_de_usuario
 		}
 		return lista.include? true
 	end
 
+	def cifrado_texto_plano
+		@codificador = @codificador.texto_plano(@lista_de_usuarios)
+  end
+
+  def cifrado_caesar_cipher
+		@codificador = @codificador.caesar_cipher(@lista_de_usuarios)
+  end
+
+  def cifrado_bcrypt
+  	@codificador = @codificador.bcryp(@lista_de_usuarios)
+  end
+
+=begin
 	################### Metodos para cambio de tipo de cifrado ############################
 	def cifrado_texto_plano
 
@@ -70,7 +81,7 @@ class ListaDeUsuario
 
   def cifrado_bcrypt
 
-   		clase_codificador = @codificador.class
+   	clase_codificador = @codificador.class
 		if  clase_codificador == BcrypCifrado
 			return true
 		else
@@ -97,9 +108,6 @@ class ListaDeUsuario
 		end
 		@codificador = codificado_nuevo
   end
-
-  def texto_plano
-  	@codificador.texto_plano(@lista_de_usuarios)
-  end
+=end
 
 end

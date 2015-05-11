@@ -58,7 +58,7 @@ describe ListaDeUsuario do
 		it "que cambie el tipo de codificador a cifrado_caesar_cipher desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_caesar_cipher
-			expect(lista.existe_usuario "raul",22)
+			expect(lista.existe_usuario "raul",22).to be(true)
 		end
 	end
 
@@ -67,7 +67,7 @@ describe ListaDeUsuario do
 		it "que cambie el tipo de codificador a cifrado_bcrypt desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_bcrypt
-			expect(lista.existe_usuario "raul",22)
+			expect(lista.existe_usuario "raul",22).to be(true)
 		end
 	end
 end
