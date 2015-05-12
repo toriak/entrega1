@@ -2,27 +2,22 @@ class Usuario
 
 	attr_accessor :estado
 
-	#el usuario puede posee como nombre letras o numeros a igual que con el password
-	def initialize (nombre ,password)
-
+	#el nombre y password del usuario puede estar conformado por letras, numeros o simbolos
+  def initialize (nombre ,password)
 		@nombre= nombre
 		@password= password
-    end
+  end
 
-    def verificacion_password (unaPassword)
+  def verificacion_password (unaPassword)
+   	return @password == unaPassword
+  end
 
-    	return @password == unaPassword
+  def verificacion_nombre (unNombre)
 
-    end
+  	return @nombre == unNombre
+  end
 
-    def verificacion_nombre (unNombre)
-
-    	return @nombre == unNombre
-    end
-
-    def cambiar_cifrado(codificador_actual, nuevo_codificador)
-
-        password_descifrado = codificador_actual.descifrar(@password)
-        @password = nuevo_codificador.cifrar (password_descifrado)
-    end
+  def cambiar_cifrado(codificador_actual, codificador_nuevo)
+    @password = codificador_actual.cambiar_cifrado(@password, codificador_nuevo)
+  end
 end

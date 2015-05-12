@@ -4,7 +4,7 @@ describe TextoPlano do
 
 	let (:texto_plano) {TextoPlano.new}
 
-	describe "cifrar" do 
+	describe "cifrar" do
 
 		it "si puede cifrar string" do
 			#string con letras
@@ -56,38 +56,5 @@ describe TextoPlano do
 			texto_para_verificar = texto_plano.cifrar_password_para_verificacion 504
 			expect(texto_cifrado).to eq(texto_para_verificar)
 		end
-	end
-
-	describe "descifrar" do
-
-		it "si puede descifrar un string" do
-
-			#string con letras solamente
-			texto_cifrado = texto_plano.cifrar "hola"
-			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("hola")
-
-			#string de letras con numeros
-			texto_cifrado = texto_plano.cifrar "22 el loco"
-			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("22 el loco")
-
-			#string de letras con numero y simbolos
-			texto_cifrado = texto_plano.cifrar "hasta m@ñana 22"
-			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("hasta m@ñana 22")
-
-		end
-		it "si puede descifrar numeros" do
-
-			texto_cifrado = texto_plano.cifrar 123
-			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("123")
-
-			texto_cifrado = texto_plano.cifrar 504
-			texto_descifrado = texto_plano.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("504")
-		end
-
 	end
 end

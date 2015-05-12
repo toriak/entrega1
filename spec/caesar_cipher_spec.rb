@@ -57,37 +57,4 @@ describe CifradoCesar do
 			expect(texto_cifrado).to eq(texto_para_verificar)
 		end
 	end
-
-	describe "descifrar" do
-
-		it "si puede descifrar un string" do
-			#string con letras solamente
-			texto_cifrado = caesar_cipher.cifrar "hola"
-			texto_descifrado = caesar_cipher.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("hola")
-
-			#string de letras con numeros
-			texto_cifrado = caesar_cipher.cifrar "22 el loco"
-			texto_descifrado = caesar_cipher.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("22 el loco")
-
-			#string de letras con numero y simbolos
-			texto_cifrado = caesar_cipher.cifrar "hasta m@ñana 22"
-			texto_descifrado = caesar_cipher.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("hasta m@ñana 22")
-
-		end
-		it "si puede descifrar numeros" do
-
-			texto_cifrado = caesar_cipher.cifrar 123
-			texto_descifrado = caesar_cipher.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("123")
-
-			texto_cifrado = caesar_cipher.cifrar 504
-			texto_descifrado = caesar_cipher.descifrar texto_cifrado
-			expect(texto_descifrado).to eq("504")
-		end
-
-	end
-
 end

@@ -11,10 +11,9 @@ class ListaDeUsuario
 
 	def initialize
 		@lista_de_usuarios = []
-		#self.cifrado_texto_plano
 		@codificador = CifradoCesar.new
 	end
-	# => metodo para agregar un usuario nuevo a la lista
+
 	def agregar_usuario(nombre_usuario, password)
 		resultado = self.existe_nombre_usuario(nombre_usuario)
 		if not resultado
@@ -26,7 +25,6 @@ class ListaDeUsuario
 		end
 	end
 
-	# => este metodo sirve para verificar que un usuario con su respectiva password exista
 	def existe_usuario(nombre_de_usuario, password)
 		password_cifrado = @codificador.cifrar_password_para_verificacion (password)
 		lista = @lista_de_usuarios.collect {|usuario|
@@ -36,10 +34,8 @@ class ListaDeUsuario
 		return lista.include? true
 	end
 
-	# => este metodo se utiliza para verificar que el nombre del usuario a quien se quiere registrar esta disponible, 
-	# => es decir que no exista en la lista
 	def existe_nombre_usuario (nombre_de_usuario)
-		lista = @lista_de_usuarios.collect {|usuario|
+		lista = @lista_de_usuarios.map {|usuario|
 			usuario.verificacion_nombre nombre_de_usuario
 		}
 		return lista.include? true
@@ -56,58 +52,4 @@ class ListaDeUsuario
   def cifrado_bcrypt
   	@codificador = @codificador.bcryp(@lista_de_usuarios)
   end
-
-=begin
-	################### Metodos para cambio de tipo de cifrado ############################
-	def cifrado_texto_plano
-
-		clase_codificador = @codificador.class
-		if  clase_codificador == TextoPlano
-			return true
-		else
-			return self.cambio_cifrado_estructura(TextoPlano.new)
-   	end
-  end
-
-  def cifrado_caesar_cipher
-
-   	clase_codificador = @codificador.class
-		if  clase_codificador == CifradoCesar
-			return true
-		else
-			return self.cambio_cifrado_estructura(CifradoCesar.new)
-    	end
-  end
-
-  def cifrado_bcrypt
-
-   	clase_codificador = @codificador.class
-		if  clase_codificador == BcrypCifrado
-			return true
-		else
-			return self.cambio_cifrado_estructura(BcrypCifrado.new)
-   	end
-  end
-
-   	##### estructuras para poder llevar a cabo el cambio de tipo de cifrado #####
-  def cambio_cifrado_estructura(codificado_nuevo)
-
-  	clase_cifrador = @codificador.class
-		if clase_cifrador == BcrypCifrado
-			cambio_cifrado(codificado_nuevo)
-			return false
-		else
-			cambio_cifrado(codificado_nuevo)
-			return true
-		end
-  end
-
-  def cambio_cifrado(codificado_nuevo)
-   	@lista_de_usuarios.each do |usuario_de_lista|
-			usuario_de_lista.cambiar_cifrado(@codificador,codificado_nuevo)
-		end
-		@codificador = codificado_nuevo
-  end
-=end
-
 end
