@@ -45,7 +45,6 @@ describe ListaDeUsuario do
 	end
 
 	describe "cifrado_texto_plano" do
-
 		it "que cambie el tipo de codificador a texto plano desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_texto_plano
@@ -54,7 +53,6 @@ describe ListaDeUsuario do
 	end
 
 	describe "cifrado_caesar_cipher" do
-
 		it "que cambie el tipo de codificador a cifrado_caesar_cipher desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_caesar_cipher
@@ -67,6 +65,44 @@ describe ListaDeUsuario do
 		it "que cambie el tipo de codificador a cifrado_bcrypt desde texto plano" do
 			lista.agregar_usuario("raul", 22)
 			lista.cifrado_bcrypt
+			expect(lista.existe_usuario "raul",22).to be(true)
+		end
+	end
+
+	describe "eliminar_usuario" do
+		it "elimina un usuario existente" do
+			lista.agregar_usuario("raul", 22)
+			expect(lista.existe_usuario "raul",22).to be(true)
+			resultado = lista.eliminar_usuario("raul")
+			expect(resultado).to be(true)
+			expect(lista.existe_usuario "raul",22).to be(false)
+		end
+		it "elimina un usuario no existente" do
+			lista.agregar_usuario("raul", 22)
+			expect(lista.existe_usuario "raul",22).to be(true)
+			resultado = lista.eliminar_usuario("tato")
+			expect(resultado).to be(false)
+			resultado = lista.eliminar_usuario("raul")
+			expect(resultado).to be(true)
+			resultado = lista.eliminar_usuario("raul")
+			expect(resultado).to be(false)
+		end
+	end
+
+	describe "guardar_cambios" do
+		it "si guarda los cambios en un usuario existente" do
+			lista.agregar_usuario("raul", 22)
+			expect(lista.existe_usuario "raul",22).to be(true)
+			resultado = lista.guardar_cambios("raul","lucas","qaz")
+			expect(lista.existe_usuario "lucas","qaz").to be(true)
+			expect(resultado).to eq(true)
+			expect(lista.existe_usuario "raul",22).to be(false)
+		end
+		it "que devueva false en caso de que el usuario no exista" do
+			lista.agregar_usuario("raul", 22)
+			expect(lista.existe_usuario "raul",22).to be(true)
+			resultado = lista.guardar_cambios("tato","lucas","qaz")
+			expect(resultado).to eq(false)
 			expect(lista.existe_usuario "raul",22).to be(true)
 		end
 	end

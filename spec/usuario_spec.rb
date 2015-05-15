@@ -22,12 +22,10 @@ describe Usuario do
 	end
 
 	describe "verificacion_password" do
-
 		usuario = Usuario.new "lucas" , 33
 		it "retorna true cuando la password es la correcta" do
 			expect(usuario.verificacion_password 33)
 		end
-
 		it "retorna false cuando la password es incorrecta" do
 			expect(usuario.verificacion_password 323)
 		end
@@ -35,23 +33,17 @@ describe Usuario do
 
 	describe "verificacion_nombre" do
 		usuario = Usuario.new "jorje" , 42
-
 		it "retorna true cuando el nombre es el correcto" do
 			expect(usuario.verificacion_nombre "jorje")
 		end
-
 		it "retorna false cuando el nombre es incorrecto" do
 			expect(usuario.verificacion_nombre "manuela").to be(false)
 		end
-
 	end
 
 	describe "cambiar_cifrado" do
-
 		####### partiendo de BCRYPT a otro codificador #######
-
 		it "entre bcrypt a bcrypt" do
-
 			codificador = BcrypCifrado.new
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
@@ -60,116 +52,93 @@ describe Usuario do
 			expect(usuario.verificacion_password "1234").to be(true)
 		end
 		it "entre bcrypt a texto plano" do
-
 			codificador = BcrypCifrado.new
 			codificador_nuevo = TextoPlano.new
-
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
 			expect(usuario.verificacion_password "1234").to be(true)
 		end
 		it "entre bcrypt a caesar cipher" do
-
 			codificador = BcrypCifrado.new
 			codificador_nuevo = CifradoCesar.new
-
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
-
 			expect(usuario.verificacion_password "1234").to be(true)
 		end
-
 		####### partiendo de TEXTO PLANO a otro codificador #######
-
 		it "entre Texto Plano a bcrypt" do
-
 			codificador = TextoPlano.new
 			codificador_nuevo = BcrypCifrado.new
-
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
 		end
-
 		it "entre Texto Plano a texto plano" do
-
 			codificador = TextoPlano.new
 			codificador_nuevo = TextoPlano.new
-
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
 		end
-
 		it "entre Texto Plano a cifrado cesar" do
-
 			codificador = TextoPlano.new
 			codificador_nuevo = CifradoCesar.new
-
 			password = "3456"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
 		end
-
 		####### partiendo de Caesar Cipher a otro codificador #######
-
 		it "entre Caesar Cipher a bcrypt" do
-
 			codificador = CifradoCesar.new
 			codificador_nuevo = BcrypCifrado.new
-
 			password = "asd56"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
 		end
 		it "entre Caesar Cipher a texto plano" do
-
 			codificador = CifradoCesar.new
 			codificador_nuevo = TextoPlano.new
-
 			password = "asd56"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
 		end
 		it "entre Caesar Cipher a caesar cipher" do
-
 			codificador = CifradoCesar.new
 			codificador_nuevo = CifradoCesar.new
-
 			password = "asd56"
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
-
 			usuario.cambiar_cifrado(codificador, codificador_nuevo)
 			password_para_verificar = codificador_nuevo.cifrar_password_para_verificacion password
 			expect(usuario.verificacion_password password_para_verificar)
+		end
+	end
+
+	describe "guardar_cambios" do
+		usuario = Usuario.new "lucas" , 33
+		it "si guarda los cambios correctamente" do
+			usuario.guardar_cambios("raul","qaz")
+			expect(usuario.verificacion_password "qaz")
+			expect(usuario.verificacion_nombre "raul")
 		end
 	end
 end

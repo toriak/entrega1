@@ -6,7 +6,6 @@ class Controlador
 	#attr_reader :lista
 
 	def initialize
-
 		@lista= ListaDeUsuario.new
 		#se crea el usuario base
 		self.agregar_usuario("andres", 1234)

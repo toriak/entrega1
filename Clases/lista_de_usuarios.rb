@@ -42,21 +42,28 @@ class ListaDeUsuario
 	end
 
 	def eliminar_usuario(nombre)
-		@lista_de_usuarios.delete_if { |usuario|
-			usuario.verificacion_nombre (nombre)
-		}
-		return true
+		if self.existe_nombre_usuario (nombre)
+			@lista_de_usuarios.delete_if { |usuario|
+				usuario.verificacion_nombre (nombre)
+			}
+			return true
+		else
+			return false
+		end
 	end
 
 	def guardar_cambios(nombre,nombre_usuario, password)
-		@lista_de_usuarios.cycle{ |usuario|
-			if usuario.verificacion_nombre nombre
-				password_cifrado = @codificador.cifrar(password)
-				usuario.guardar_cambios(nombre_usuario, password_cifrado)
-				return true
-			end
-		}
-		return false
+		if self.existe_nombre_usuario (nombre)
+			@lista_de_usuarios.cycle{ |usuario|
+				if usuario.verificacion_nombre nombre
+					password_cifrado = @codificador.cifrar(password)
+					usuario.guardar_cambios(nombre_usuario, password_cifrado)
+					return true
+				end
+			}
+		else
+			return false
+		end
 	end
 	def cifrado_texto_plano
 		@codificador = @codificador.texto_plano(@lista_de_usuarios)
