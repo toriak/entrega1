@@ -8,21 +8,16 @@ describe Usuario do
 
 	describe "initialize" do
 
-		it "crea correcta de un usuario" do
-
+		it "creacion correcta de un usuario" do
 			usuario = Usuario.new "raul", 22
 			expect(usuario.verificacion_nombre"raul").to be(true)
 			expect(usuario.verificacion_password 22)
-
 		end
 
-		it "crea correcta de un usuario que en su nombre contenga una ñ " do
-
+		it "creacion correcta de un usuario que en su nombre contenga una ñ " do
 			usuario = Usuario.new "ñoño", "lucas"
-
 			expect(usuario.verificacion_nombre "ñoño").to be(true)
 			expect(usuario.verificacion_password "lucas")
-
 		end
 	end
 
@@ -46,7 +41,7 @@ describe Usuario do
 		end
 
 		it "retorna false cuando el nombre es incorrecto" do
-			expect(usuario.verificacion_nombre "manuela")
+			expect(usuario.verificacion_nombre "manuela").to be(false)
 		end
 
 	end
@@ -62,7 +57,6 @@ describe Usuario do
 			password_cifrado = codificador.cifrar(password)
 			usuario = Usuario.new("jorje", password_cifrado)
 			usuario.cambiar_cifrado(codificador, codificador)
-
 			expect(usuario.verificacion_password "1234").to be(true)
 		end
 		it "entre bcrypt a texto plano" do
