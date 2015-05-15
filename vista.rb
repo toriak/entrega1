@@ -63,8 +63,6 @@ class Vista
 	end
 
   def modificar_datos(nombre)
-
-    #say("\t Datos Actuales \n")
     say("\t nombre de usuario : #{nombre} \n")
     say("\t contraseña : ··········\n")
     say("\t Ingrese sus nuevos datos \n")
@@ -76,9 +74,10 @@ class Vista
       say "\t El nombre de usuario actualmete esta ocupado!"
       self.modificar_datos(nombre)
     else
-      resutl = @controlador.guardar_cambios(nombre,nombre_usuario, password)
-      say "\t Se ah actualizado los datos de su cuenta #{resutl} \n"
-      #self.vista_de_usuario_deslogueado
+      @controlador.guardar_cambios(nombre,nombre_usuario, password)
+
+      say "\t Se ah actualizado los datos de su cuenta  \n"
+      self.vista_de_usuario_logueado(nombre_usuario)
     end
   end
   def eliminar_usuario(nombre)
