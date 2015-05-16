@@ -70,14 +70,19 @@ class Vista
     password = ask("Password: ",String){
       |password| password.echo = "·"
     }
-    if @controlador.existe_nombre_usuario (nombre_usuario)
-      say "\t El nombre de usuario actualmete esta ocupado!"
-      self.modificar_datos(nombre)
-    else
-      @controlador.guardar_cambios(nombre,nombre_usuario, password)
+    if (nombre_usuario.size > 0 and password.size >0)
 
-      say "\t Se ah actualizado los datos de su cuenta  \n"
-      self.vista_de_usuario_logueado(nombre_usuario)
+      if @controlador.existe_nombre_usuario (nombre_usuario)
+        say "\t El nombre de usuario actualmete esta ocupado!"
+        self.modificar_datos(nombre)
+      else
+        @controlador.guardar_cambios(nombre,nombre_usuario, password)
+        say "\t Se ah actualizado los datos de su cuenta  \n"
+        self.vista_de_usuario_logueado(nombre_usuario)
+      end
+    else
+      say "\t No ingreso correctamente el Nombre o la contraseña"
+      self.modificar_datos(nombre)
     end
   end
   def eliminar_usuario(nombre)
